@@ -539,7 +539,7 @@ footer{background:var(--N);color:#fff;padding:4rem 1.5rem 2rem}
         <div class="val-list">
           <div class="vi reveal d1"><div class="vi-ic">🎯</div><div><h4>Mission</h4><p>Rassembler, former et accompagner les jeunes d'Amanikro pour le développement social, culturel et économique du village.</p></div></div>
           <div class="vi reveal d2"><div class="vi-ic">👁️</div><div><h4>Vision</h4><p>Faire d'AJESA un modèle d'association jeunesse dynamique, structurée et reconnue à l'échelle régionale et nationale.</p></div></div>
-          <div class="vi reveal d3"><div class="vi-ic">💎</div><div><h4>Valeurs</h4><p>Solidarité · Intégrité · Excellence · Engagement · Respect de nos traditions et ouverture sur l'avenir.</p></div></div>
+          <div class="vi reveal d3"><div class="vi-ic">💎</div><div><h4>Valeurs</h4><p>Solidarité · Intégrité · Discipline · Engagement · Respect de nos traditions et ouverture sur l'avenir.</p></div></div>
         </div>
       </div>
     </div>
@@ -1122,9 +1122,30 @@ footer{background:var(--N);color:#fff;padding:4rem 1.5rem 2rem}
 
 <script>
 // ================================================
-// LISTE DES MEMBRES — triée alphabétiquement
+// GOOGLE SHEETS — ID du fichier AJESA Base de données
 // ================================================
-const MEMBRES = [
+const SHEET_ID = "1ZvY0Cs46v3twL2L71EeoBHlrbm3cQ4aoGKLy3angg8M";
+const SHEET_URL = (onglet) =>
+  `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(onglet)}`;
+
+async function chargerDepuisSheets(onglet){
+  try {
+    const res = await fetch(SHEET_URL(onglet));
+    const txt = await res.text();
+    const json = JSON.parse(txt.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\)/)[1]);
+    const cols = json.table.cols.map(c => c.label);
+    return json.table.rows.map(row => {
+      const obj = {};
+      cols.forEach((col, i) => { obj[col] = row.c[i] ? (row.c[i].v || "") : ""; });
+      return obj;
+    });
+  } catch(e) { console.warn("Erreur chargement Sheets (" + onglet + "):", e); return null; }
+}
+
+// ================================================
+// LISTE DES MEMBRES — chargée depuis Google Sheets
+// ================================================
+let MEMBRES = [
   {nom:"Adepo Wilfried", poste:"", role:"Membre", statut:"Actif"},
   {nom:"Allou Henri Joel Kouakou", poste:"Commissaire aux Comptes", role:"Commissaire aux Comptes", statut:"Bureau"},
   {nom:"Bohoussou Kouame Noel", poste:"", role:"Membre", statut:"Actif"},
@@ -1165,166 +1186,7 @@ const MEMBRES = [
   {nom:"Koffi Romaric", poste:"", role:"Membre", statut:"Actif"},
   {nom:"Yao Konan Henri", poste:"", role:"Membre", statut:"Actif"},
   {nom:"Yao Kouassi Abel", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"Yao Koukou Frederic", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"},
-  {nom:"", poste:"", role:"Membre", statut:"Actif"}
+  {nom:"Yao Koukou Frederic", poste:"", role:"Membre", statut:"Actif"}
 ];
 
 function bdg(s){
@@ -1858,8 +1720,8 @@ function afficherPopup(){
 // ================================================
 // 🔧 MODIFIER ICI : changer la date et le nom du prochain événement
 const PROCHAIN_EVENEMENT = {
-  date: "2025-07-05T09:00:00",
-  nom: "Réunion mensuelle AJESA"
+  date: "2027-01-15T09:00:00",
+  nom: "Cérémonie officielle de l'AJESA"
 };
 function majCompteur(){
   const cible = new Date(PROCHAIN_EVENEMENT.date).getTime();
@@ -1895,7 +1757,95 @@ window.addEventListener("DOMContentLoaded", () => {
   if(typeof chargerPhotos==="function"){ chargerPhotos(); if(photos.length) rafraichirSlideshow(); }
   if(typeof chargerVideos==="function"){ chargerVideos(); }
   if(typeof chargerActus==="function"){ chargerActus(); if(actualites.length) afficherActualites(); }
+
+  // ================================================
+  // CHARGEMENT DEPUIS GOOGLE SHEETS
+  // ================================================
+  chargerMembresSheets();
+  chargerBureauSheets();
+  chargerActualitesSheets();
+  chargerGalerieSheets();
 });
+
+async function chargerMembresSheets(){
+  const data = await chargerDepuisSheets("membres");
+  if(!data || !data.length) return;
+  const nouveaux = data
+    .filter(r => r["nom"] && r["nom"].toString().trim() !== "")
+    .map(r => ({
+      nom: r["nom"] || "",
+      poste: r["poste"] || "",
+      role: r["rôle"] || r["role"] || "Membre",
+      statut: r["statut"] || "Actif"
+    }));
+  if(nouveaux.length > 0){
+    MEMBRES = nouveaux;
+    const actifs = MEMBRES.filter(m => m.nom.trim() !== "");
+    document.getElementById("membreCount").textContent = actifs.length + " membres";
+    document.getElementById("mfcount").textContent = actifs.length + " membre(s) enregistré(s)";
+    renderRows(MEMBRES.slice(0, 6), "prevBody");
+    renderRows(MEMBRES, "mBody");
+    // Mettre à jour le compteur hero
+    const heroMembres = document.querySelector('.sn[data-to="40"]');
+    if(heroMembres){ heroMembres.dataset.to = actifs.length; heroMembres.textContent = actifs.length; }
+  }
+}
+
+async function chargerBureauSheets(){
+  const data = await chargerDepuisSheets("bureau");
+  if(!data || !data.length) return;
+  const bureau = data.filter(r => r["Poste"] && r["Poste"].toString().trim() !== "");
+  if(!bureau.length) return;
+  const icones = {"Président":"👑","Secrétaire Général":"📋","Trésorier":"💰","Commissaire aux Comptes":"🔍","Chef d'Organisation":"🎪"};
+  const grid = document.querySelector(".bureau-grid");
+  if(!grid) return;
+  grid.innerHTML = bureau.map((m, i) => {
+    const poste = m["Poste"] || "";
+    const nom = m["Nom"] || "";
+    const desc = m["Description"] || "";
+    const ic = icones[poste] || "👤";
+    return `<div class="bc reveal d${Math.min(i+1,5)}">
+      <div class="bc-av">${ic}</div>
+      <div class="bc-role">${poste}</div>
+      <div class="bc-name">${nom}</div>
+      <div class="bc-info">${desc}</div>
+    </div>`;
+  }).join("");
+}
+
+async function chargerActualitesSheets(){
+  const data = await chargerDepuisSheets("Actualités");
+  if(!data || !data.length) return;
+  const actus = data.filter(r => r["Titre"] && r["Titre"].toString().trim() !== "");
+  if(!actus.length) return;
+  const panel = document.getElementById("panelActus");
+  if(!panel) return;
+  const existing = panel.querySelector(".actu-sheets");
+  if(existing) existing.remove();
+  const div = document.createElement("div");
+  div.className = "actu-sheets";
+  div.style.cssText = "display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:1rem";
+  div.innerHTML = actus.map(a => `
+    <div style="background:rgba(255,255,255,.08);border-radius:16px;padding:1.5rem;border:1px solid rgba(255,255,255,.1)">
+      <p style="font-size:.72rem;color:var(--O);font-weight:700;margin-bottom:.5rem">${a["Date"] || ""}</p>
+      <h3 style="color:#fff;font-size:1rem;margin-bottom:.7rem">${a["Titre"]}</h3>
+      <p style="color:rgba(255,255,255,.6);font-size:.85rem;line-height:1.6">${a["Contenu"] || ""}</p>
+      ${a["Image URL"] ? `<img src="${a["Image URL"]}" style="width:100%;border-radius:10px;margin-top:1rem;max-height:180px;object-fit:cover"/>` : ""}
+    </div>`).join("");
+  panel.appendChild(div);
+}
+
+async function chargerGalerieSheets(){
+  const data = await chargerDepuisSheets("Galerie");
+  if(!data || !data.length) return;
+  const imgs = data.filter(r => r["URL Photos"] && r["URL Photos"].toString().trim() !== "");
+  if(!imgs.length) return;
+  imgs.forEach(img => {
+    photos.push({src: img["URL Photos"], nom: img["Légende"] || "", date: img["Date"] || ""});
+  });
+  sauvegarderPhotos();
+  rafraichirSlideshow();
+}
 
 </script>
 </body>

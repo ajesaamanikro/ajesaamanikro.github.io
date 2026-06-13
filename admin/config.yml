@@ -1,0 +1,43 @@
+backend:
+  name: git-gateway
+  branch: main
+
+locale: fr
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "annonces"
+    label: "📢 Annonces"
+    folder: "_annonces"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Titre", name: "title", widget: "string"}
+      - {label: "Catégorie", name: "categorie", widget: "select", options: ["Réunion", "Activité", "Communiqué", "Urgent"]}
+      - {label: "Date", name: "date", widget: "datetime"}
+      - {label: "Contenu", name: "body", widget: "markdown"}
+
+  - name: "membres"
+    label: "👥 Membres"
+    folder: "_membres"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Nom complet", name: "title", widget: "string"}
+      - {label: "Rôle", name: "role", widget: "select", options: ["Membre", "Bureau", "Commissaire aux Comptes"]}
+      - {label: "Poste", name: "poste", widget: "string", required: false}
+      - {label: "Statut", name: "statut", widget: "select", options: ["Actif", "Inactif"]}
+
+  - name: "config"
+    label: "⚙️ Paramètres du site"
+    files:
+      - label: "Informations générales"
+        name: "general"
+        file: "_data/general.yml"
+        fields:
+          - {label: "Nom de l'association", name: "nom", widget: "string"}
+          - {label: "Nombre de membres", name: "nb_membres", widget: "number"}
+          - {label: "Email de contact", name: "email", widget: "string"}
+          - {label: "Numéro WhatsApp", name: "whatsapp", widget: "string"}

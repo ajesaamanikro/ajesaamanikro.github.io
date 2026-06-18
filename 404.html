@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Page introuvable — AJESA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--G:#1A6B2F;--G2:#2A8A42;--O:#F47920;--OL:#FF9A40;--N:#0D1F12;--N2:#1A3320;}
+    html,body{height:100%}
+    body{
+      font-family:'Outfit',sans-serif;
+      background:linear-gradient(160deg,#0D1F12 0%,#1A3320 55%,#0D1F12 100%);
+      color:#fff;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      min-height:100vh;text-align:center;padding:2rem;overflow:hidden;position:relative;
+    }
+
+    /* Orbes décoratifs */
+    .orb{position:absolute;border-radius:50%;filter:blur(90px);animation:drift 16s ease-in-out infinite alternate;pointer-events:none}
+    .oa{width:500px;height:500px;background:rgba(26,107,47,.3);top:-150px;left:-150px}
+    .ob{width:380px;height:380px;background:rgba(244,121,32,.18);bottom:-80px;right:-80px;animation-delay:-5s}
+
+    /* Grille de fond */
+    .grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+
+    /* Contenu */
+    .wrap{position:relative;z-index:2;max-width:560px}
+
+    /* Logo AJESA */
+    .logo{width:90px;height:90px;margin:0 auto 2rem;animation:fadeUp .6s ease both,rotateSlow 20s linear infinite}
+    .logo svg{width:100%;height:100%;filter:drop-shadow(0 0 20px rgba(244,121,32,.5))}
+
+    /* 404 géant */
+    .big-num{
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(5rem,20vw,9rem);
+      font-weight:700;line-height:1;
+      background:linear-gradient(90deg,var(--O),var(--OL),var(--O));
+      background-size:200%;
+      -webkit-background-clip:text;background-clip:text;
+      color:transparent;
+      animation:shimmer 3s linear infinite, fadeUp .6s .1s ease both;
+      margin-bottom:.5rem;
+    }
+
+    .pill{
+      display:inline-flex;align-items:center;gap:.5rem;
+      background:rgba(244,121,32,.15);border:1px solid rgba(244,121,32,.3);
+      color:var(--O);font-size:.75rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+      padding:.35rem 1rem;border-radius:100px;margin-bottom:1.5rem;
+      animation:fadeUp .6s .15s ease both;
+    }
+
+    h1{
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(1.6rem,5vw,2.4rem);font-weight:700;
+      margin-bottom:1rem;animation:fadeUp .6s .2s ease both;
+    }
+
+    p{
+      font-size:.95rem;color:rgba(255,255,255,.6);line-height:1.75;
+      margin-bottom:2rem;animation:fadeUp .6s .25s ease both;
+    }
+
+    /* Boutons */
+    .btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;animation:fadeUp .6s .3s ease both}
+    .btn-p{
+      background:#F47920;color:#fff;font-weight:800;
+      padding:.8rem 2rem;border-radius:100px;font-size:.92rem;
+      text-decoration:none;transition:all .25s;
+      box-shadow:0 4px 20px rgba(244,121,32,.45);
+    }
+    .btn-p:hover{background:var(--OL);transform:translateY(-3px)}
+    .btn-o{
+      border:2px solid rgba(255,255,255,.25);color:#fff;font-weight:600;
+      padding:.8rem 1.8rem;border-radius:100px;font-size:.92rem;
+      text-decoration:none;transition:all .25s;
+    }
+    .btn-o:hover{border-color:var(--O);background:rgba(244,121,32,.1);transform:translateY(-3px)}
+
+    /* Liens rapides */
+    .links{
+      display:flex;gap:.7rem;flex-wrap:justify-content:center;
+      margin-top:2.5rem;animation:fadeUp .6s .4s ease both;
+    }
+    .lnk{
+      font-size:.8rem;color:rgba(255,255,255,.4);
+      text-decoration:none;padding:.35rem .8rem;border-radius:8px;
+      border:1px solid rgba(255,255,255,.1);transition:all .2s;
+    }
+    .lnk:hover{color:#fff;border-color:rgba(244,121,32,.4);background:rgba(244,121,32,.08)}
+
+    /* Footer */
+    .foot{
+      position:absolute;bottom:1.5rem;left:0;right:0;
+      font-size:.72rem;color:rgba(255,255,255,.2);letter-spacing:.08em;
+    }
+
+    /* Animations */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(24px,16px) scale(1.07)}}
+    @keyframes rotateSlow{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+    @keyframes shimmer{0%{background-position:0%}100%{background-position:200%}}
+
+    /* Compte à rebours */
+    .countdown{font-size:.82rem;color:rgba(255,255,255,.35);margin-top:1rem;animation:fadeUp .6s .45s ease both}
+    .countdown span{color:var(--O);font-weight:700}
+  </style>
+</head>
+<body>
+  <div class="orb oa"></div>
+  <div class="orb ob"></div>
+  <div class="grid"></div>
+
+  <div class="wrap">
+
+    <!-- Logo AJESA -->
+    <div class="logo">
+      <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="110" cy="110" r="105" fill="#1A6B2F"/>
+        <circle cx="110" cy="110" r="105" fill="none" stroke="#F47920" stroke-width="6"/>
+        <circle cx="110" cy="110" r="80" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+        <text x="110" y="95" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="38" font-weight="700" fill="#FFFFFF">AJ</text>
+        <text x="110" y="130" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="38" font-weight="700" fill="#F47920">ESA</text>
+        <text x="110" y="158" text-anchor="middle" font-family="Outfit,sans-serif" font-size="11" font-weight="600" fill="rgba(255,255,255,.5)" letter-spacing="3">AMANIKRO</text>
+      </svg>
+    </div>
+
+    <div class="big-num">404</div>
+
+    <div class="pill">🔍 Page introuvable</div>
+
+    <h1>Cette page n'existe pas</h1>
+
+    <p>La page que vous cherchez a peut-être été déplacée, supprimée ou l'adresse est incorrecte. Retournez à l'accueil pour continuer votre visite sur le site officiel de l'AJESA.</p>
+
+    <div class="btns">
+      <a href="https://ajesaamanikro.github.io" class="btn-p">🏠 Retour à l'accueil</a>
+      <a href="https://wa.me/2250713121857" target="_blank" class="btn-o">💬 Nous contacter</a>
+    </div>
+
+    <div class="links">
+      <a href="https://ajesaamanikro.github.io#presentation" class="lnk">À propos</a>
+      <a href="https://ajesaamanikro.github.io#membres" class="lnk">Membres</a>
+      <a href="https://ajesaamanikro.github.io#projets" class="lnk">Projets</a>
+      <a href="https://ajesaamanikro.github.io#contact" class="lnk">Contact</a>
+      <a href="https://ajesaamanikro.github.io#documents" class="lnk">Documents</a>
+    </div>
+
+    <div class="countdown">Redirection automatique dans <span id="c">10</span> secondes…</div>
+  </div>
+
+  <div class="foot">AJESA — Association des Jeunes Solidaires d'Amanikro · Daloa, Côte d'Ivoire 🇨🇮</div>
+
+  <script>
+    let s = 10;
+    const el = document.getElementById('c');
+    const t = setInterval(()=>{
+      s--;
+      el.textContent = s;
+      if(s <= 0){
+        clearInterval(t);
+        window.location.href = 'https://ajesaamanikro.github.io';
+      }
+    }, 1000);
+  </script>
+</body>
+</html>

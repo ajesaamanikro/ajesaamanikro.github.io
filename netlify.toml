@@ -1,0 +1,6 @@
+ajesa-site/
+├── netlify.toml       ← ICI (à la racine)
+├── index.html
+├── style.css
+├── script.js
+└── ...

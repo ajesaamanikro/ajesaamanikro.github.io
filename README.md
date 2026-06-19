@@ -10,7 +10,7 @@
 
 ## 📖 À propos de l'AJESA
 
-L'**Association des Jeunes Solidaires d'Amanikro (AJESA)** est une association de jeunesse fondée le **20 mai 2025** à Amanikro, dans la région de Daloa, en Côte d'Ivoire.
+L'**Association des Jeunes Solidaires d'Amanikro (AJESA)** est une association de jeunesse fondée le **24 novembre 2024** à Amanikro, dans la région de Daloa, en Côte d'Ivoire.
 
 Notre mission est de **rassembler, former et soutenir** la jeunesse d'Amanikro pour contribuer au développement social, culturel et économique du village.
 
@@ -59,13 +59,14 @@ Ce dépôt héberge le site officiel de l'AJESA, accessible à l'adresse :
 
 ---
 
-## 📄 Licence
+## 📄 Licence<img width="1536" height="1024" alt="1000040651" src="https://github.com/user-attachments/assets/d992ae0d-645f-4f47-bc56-a84268c94c4c" />
+
 
 Ce projet est sous licence **MIT**. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
 
 ---
 
 <p align="center">
-  <strong>AJESA © 2025 — Amanikro, Côte d'Ivoire</strong><br>
+  <strong>AJESA © 2024 — Amanikro, Côte d'Ivoire</strong><br>
   <em>Ensemble pour un village prospère 🌿</em>
 </p>

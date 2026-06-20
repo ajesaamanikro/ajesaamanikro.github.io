@@ -1995,11 +1995,6 @@ function copierNotification(){
   window.open("https://app.onesignal.com","_blank");
 }
 
-/* ===== Service Worker (mode hors-ligne + notifications) ===== */
-if("serviceWorker" in navigator){
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("sw.js").catch(()=>{});
-  });
 }
 </script>
 <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8511730590138075" crossorigin="anonymous"></script>

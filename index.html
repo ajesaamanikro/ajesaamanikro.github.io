@@ -1969,17 +1969,21 @@ window.addEventListener("appinstalled", () => {
 
 /* ===== Notifications (OneSignal) ===== */
 function activerNotifications(){
-  const note = document.getElementById("notifNote");
+const note = document.getElementById("notifNote");
   if(typeof ONESIGNAL_APP_ID === "undefined" || ONESIGNAL_APP_ID.indexOf("COLLE-TON") === 0){
     if(note) note.textContent = "Notifications pas encore configurées (App ID OneSignal manquant).";
     return;
   }
+  alert("Etape 1 : fonction lancee");
   window.OneSignalDeferred = window.OneSignalDeferred || [];
   OneSignalDeferred.push(async function(OneSignal){
+    alert("Etape 2 : OneSignal pret");
     try{
       await OneSignal.Notifications.requestPermission();
+      alert("Etape 3 : permission demandee");
       if(note) note.textContent = OneSignal.Notifications.permission ? "🔔 Notifications activées, merci !" : "Notifications refusées. Tu peux les activer dans les réglages du navigateur.";
     }catch(err){
+      alert("Erreur : " + err.message);
       if(note) note.textContent = "Impossible d'activer les notifications sur ce navigateur.";
     }
   });

@@ -2,7 +2,7 @@
 
 > *Unir, Former, Développer* — La jeunesse d'Amanikro au service de son village.
 
-[![Site web](https://img.shields.io/badge/Site%20web-ajesaamanikro.github.io-green?style=flat-square)](https://ajesaamanikro.github.io)
+[![Site web](](https://ajesa-amanikro.com)
 [![Statut](https://img.shields.io/badge/Statut-Actif-brightgreen?style=flat-square)]()
 [![Localisation](https://img.shields.io/badge/Localisation-Amanikro%2C%20Daloa%2C%20C%C3%B4te%20d'Ivoire-orange?style=flat-square)]()
 
@@ -32,7 +32,7 @@ Devenir une association modèle, reconnue à l'échelle régionale et nationale,
 
 Ce dépôt héberge le site officiel de l'AJESA, accessible à l'adresse :
 
-**👉 [https://ajesaamanikro.github.io](https://ajesaamanikro.github.io)**
+**👉 [https://ajesa-amanikro.com](https://ajesa-amanikro.com)**
 
 ### Fonctionnalités du site
 - 📋 Présentation de l'association et de ses activités
@@ -53,8 +53,7 @@ Ce dépôt héberge le site officiel de l'AJESA, accessible à l'adresse :
 ---
 
 ## 📬 Contact
-
-- 🌍 Site web : [ajesaamanikro.github.io](https://ajesaamanikro.github.io)
+- 🌍 Site web : [ajesa-amanikro.com](https://ajesa-amanikro.com) 
 - 📍 Localisation : Amanikro, Daloa, Côte d'Ivoire
 
 ---

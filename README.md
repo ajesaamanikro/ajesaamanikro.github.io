@@ -2,7 +2,7 @@
 
 > *Unir, Former, Développer* — La jeunesse d'Amanikro au service de son village.
 
-[![Site web](](https://ajesa-amanikro.com)
+[![Site web](https://img.shields.io/badge/Site%20web-ajesa--amanikro.com-green?style=flat-square)](https://ajesa-amanikro.com)
 [![Statut](https://img.shields.io/badge/Statut-Actif-brightgreen?style=flat-square)]()
 [![Localisation](https://img.shields.io/badge/Localisation-Amanikro%2C%20Daloa%2C%20C%C3%B4te%20d'Ivoire-orange?style=flat-square)]()
 

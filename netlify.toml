@@ -6,4 +6,4 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; img-src 'self' data: https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://identity.netlify.com; img-src 'self' data: https://www.google-analytics.com https://res.cloudinary.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://api.cloudinary.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:"
